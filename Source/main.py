@@ -1,5 +1,69 @@
+import os
+
+
+# Tároló elem a folyadékhoz
+class Container():
+    def __init__(self, size, value):
+        self.size = size
+        self.value = value
+        self.valuemark = '▣'
+        self.sizemark = '▢'
+        self.counter = 0
+
+    @property
+    def size(self):
+        return self._size
+
+    @size.setter
+    def size(self, value):
+        if (value > 10):
+            raise ValueError("Tíznél nagyobb tároló nem használható!")
+        self._size = value
+
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, value):
+        if(value > self.size):
+            raise ValueError("A tartalmazott mennyiség, nem lehet nagyobb, mint a méret!")
+        self._value = value
+
+    def print(self):
+        for i in range(self.value):
+            print(self.valuemark, end="")
+            self.counter += 1
+        for i in range(self.counter, self.size):
+            print(self.sizemark, end="")
+        print()
+
+    def fill(self, value):
+        self.value += value
+
+    def loadInto(self, Container):
+        Container.fill(c.size)
+
+# gyűjtő osztály
+class Shelf():
+    def __init__(self, ContainerList):
+        self.ContainerList = ContainerList
+
+    def print(self):
+        for i in range(len(self.ContainerList)):
+            self.ContainerList[i].print()
+
+
+def clear():
+    os.system("clear")
+
+containers = [Container(3,0), Container(5,0), Container(8,8)]
+
 def main():
-    print("Helló Világ!")
+    print("Kezdőállapot")
+
+    sh = Shelf(containers)
+    sh.print()
 
 if __name__ == '__main__':
     main()
