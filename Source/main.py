@@ -64,6 +64,9 @@ def main():
 
     sh = Shelf(containers)
     sh.print()
+    sh.ContainerList[0].fill(3)
+    clear()
+    sh.print()
 
 if __name__ == '__main__':
     main()
