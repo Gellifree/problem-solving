@@ -36,6 +36,7 @@ class Container():
         self._value = value
 
     def print(self):
+        self.counter = 0
         for i in range(self.value):
             print(self.valuemark, end="")
             self.counter += 1
@@ -47,7 +48,14 @@ class Container():
         self.value += value
 
     def loadInto(self, Container):
-        Container.fill(c.size)
+        freeSpace = Container.size - Container.value
+
+        if(freeSpace > self.value):
+            Container.value += self.value
+            self.value -= self.value
+        else:
+            Container.value += freeSpace
+            self.value -= freeSpace
 
 # gyűjtő osztály
 class Shelf():
@@ -62,15 +70,15 @@ class Shelf():
 def clear():
     os.system("clear")
 
-containers = [Container(3,0), Container(5,0), Container(8,8)]
+containers = [Container(3,1), Container(5,0), Container(8,8)]
 
 def main():
     print("Kezdőállapot")
 
     sh = Shelf(containers)
     sh.print()
-    sh.ContainerList[0].fill(3)
-    clear()
+    sh.ContainerList[0].loadInto(sh.ContainerList[0])
+    print("--")
     sh.print()
 
 if __name__ == '__main__':
