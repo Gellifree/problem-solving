@@ -23,9 +23,11 @@ def rec_binary_search(list, data, e, u):
         else:
             return k
 
+def hanoi(n, r1,r3,r2):
+    if(n > 0):
+        hanoi(n-1, r1,r2,r3)
+        print(str(n) + '. korong átrakása:', r1, '->', r3)
+        hanoi(n-1, r2,r3,r1)
 
 if __name__ == '__main__':
-    test_list = [1,2,3,5,6,7,8,9,12,14,45,78,89]
-
-    result = rec_binary_search(test_list, 12, 0, len(test_list)-1)
-    print(result)
+    hanoi(5, 'a', 'b', 'c')
