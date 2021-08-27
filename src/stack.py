@@ -3,21 +3,21 @@
 # SPDX-FileCopyrightText: 2021 Kovács Norbert <mfw.kovacs.norbert@gmail.com>
 #
 
-class Stack():
+class Stack:
 
     def __init__(self):
         self.stack_pointer = -1
-        self.stack_max_size = 20
+        self.max_size = 20
         self.data = {}
 
-    def stack_empty(self) -> bool:
+    def empty(self) -> bool:
         return self.stack_pointer < 0
 
-    def stack_full(self) -> bool:
-        return self.stack_pointer == self.stack_max_size
+    def full(self) -> bool:
+        return self.stack_pointer == self.max_size
 
     def push(self, value) -> bool:
-        if not self.stack_full():
+        if not self.full():
             self.stack_pointer += 1
             self.data[self.stack_pointer] = value
             return True
@@ -25,7 +25,7 @@ class Stack():
             return False
 
     def pull(self):
-        if not self.stack_empty():
+        if not self.empty():
             value = self.data[self.stack_pointer]
             del self.data[self.stack_pointer]
             self.stack_pointer -= 1
